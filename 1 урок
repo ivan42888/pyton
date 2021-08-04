@@ -1,14 +1,16 @@
 # задание 1
 # Поработайте с переменными, создайте несколько, выведите на экран. Запросите у пользователя некоторые числа и строки и сохраните в переменные, затем выведите на экран.
 
-first_variable = 1
-second_variable = 2
-print("Переменные F_variable и S_variable - ", first_variable, second_variable)
-string1 = input("Заполните строку номер один")
-number1 = int(input("Заполните первое число "))
-string2 = input("Заполните строку номер два ")
-number2 = int(input("заполните второе число "))
-print(f"Введеные значения - {string1} {number1:d} {string2} {number2:d}")
+gender = "m"
+country = "Russia"
+name = "Ivan"
+age = 24
+print("данные: ", gender, country, name, age)
+name1 = input("Заполните имя >>> ")
+age1 = int(input("Заполните возраст >>> "))
+country1 = input("Заполните страну >>> ")
+gender1 = input("заполните пол >>> ")
+print(f"Введеные данные - {name1} {age1:d} {country1} {gender1}")
 
 # Задание 2
 #Пользователь вводит время в секундах. Переведите время в часы, минуты, секунды и выведите в формате чч:мм:сс. Используйте форматирование строк.
