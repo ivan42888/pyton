@@ -1,0 +1,112 @@
+1 задание
+Создать список и заполнить его элементами различных типов данных.
+Реализовать скрипт проверки типа данных каждого элемента.
+Использовать функцию type() для проверки типа.
+Элементы списка можно не запрашивать у пользователя,
+а указать явно, в программе.
+
+example = ["name", 1, None, 'false', False, -1, 1.1]
+def my_type(kk):
+    for kk in range(len(example)):
+        print(type(example[kk]))
+    return
+my_type(example)
+
+2 задание
+Для списка реализовать обмен значений соседних элементов, т.е.
+Значениями обмениваются элементы с индексами 0 и 1, 2 и 3 и т.д.
+При нечетном количестве элементов последний сохранить
+на своем месте.
+Для заполнения списка элементов необходимо использовать
+функцию input().
+
+kk_znach = int(input("в списке содержится элементов >>>"))
+znach = []
+i = 0
+kk = 0
+while i < kk_znach:
+    znach.append(input("введите элемент >>>"))
+    i += 1
+print(znach)
+
+3 задание
+Пользователь вводит месяц в виде целого числа от 1 до 12.
+Сообщить к какому времени года относится месяц (зима, весна,
+лето, осень).
+Напишите решения через list и через dict.
+
+seasons_list = ['зима', 'весна', 'лето', 'осень']
+month = int(input("Введите месяц от 1 до 12 >>>"))
+if month ==1 or month == 12 or month == 2:
+    print(seasons_list[0])
+elif month == 3 or month == 4 or month ==5:
+    print(seasons_list[1])
+elif month == 6 or month == 7 or month == 8:
+    print(seasons_list[2])
+elif month == 9 or month == 10 or month == 11:
+    print(seasons_list[3])
+else:
+    print("месян введен не корректно")
+
+seasons_dict = {1 : 'зима', 2 : 'весна', 3 : 'лето', 4 : 'осень'}
+month = int(input("Введите месяц от 1 до 12 >>>"))
+if month ==1 or month == 12 or month == 2:
+    print(seasons_dict.get(1))
+elif month == 3 or month == 4 or month ==5:
+    print(seasons_dict.get(2))
+elif month == 6 or month == 7 or month == 8:
+    print(seasons_dict.get(3))
+elif month == 9 or month == 10 or month == 11:
+    print(seasons_dict.get(4))
+else:
+    print("месян введен не корректно")
+        
+4 задание
+Пользователь вводит строку из нескольких слов, разделённых
+пробелами. Вывести каждое слово с новой строки.
+Строки необходимо пронумеровать. Если в слово длинное,
+выводить только первые 10 букв в слове.
+
+stroka = input("введите строку ")
+slovo = []
+num = 1
+for kk in range(stroka.count(' ') + 1):
+    slovo = stroka.split()
+    if len(str(slovo)) <= 10:
+        print(f" {num} {slovo [kk]}")
+        num += 1
+    else:
+        print(f" {num} {slovo [kk] [0:10]}")
+        num += 1
+        
+5 задание
+Реализовать структуру «Рейтинг», представляющую собой
+не возрастающий набор натуральных чисел.
+У пользователя необходимо запрашивать новый элемент рейтинга.
+Если в рейтинге существуют элементы с одинаковыми значениями,
+то новый элемент с тем же значением должен разместиться
+после них.
+Подсказка. Например, набор натуральных чисел: 7, 5, 3, 3, 2.
+Пользователь ввел число 3. Результат: 7, 5, 3, 3, 3, 2.
+Пользователь ввел число 8. Результат: 8, 7, 5, 3, 3, 2.
+Пользователь ввел число 1. Результат: 7, 5, 3, 3, 2, 1.
+Набор натуральных чисел можно задать непосредственно в коде, 
+например, my_list = [7, 5, 3, 3, 2].
+
+spisok = [1, 2, 3, 3, 4]
+print(f"Список - {spisok}")
+chislo = int(input("Введите число >>> "))
+while chislo != 111:
+    for kk in range(len(spisok)):
+        if spisok[kk] == chislo:
+            spisok.insert(kk + 1, chislo)
+            break
+        elif spisok[0] < chislo:
+            spisok.insert(0, chislo)
+        elif spisok[-1] > chislo:
+            spisok.append(chislo)
+        elif spisok[kk] > chislo and spisok[kk + 1] < chislo:
+            spisok.insert(kk + 1, chislo)
+    print(f"текущий список - {spisok}")
+    digit = int(input("Введите число >>> "))
+   
