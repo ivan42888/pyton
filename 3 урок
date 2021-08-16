@@ -1,0 +1,85 @@
+№1
+def div(*znacheniya):
+    try:
+        znachenie1 = int(input("Введите первое значение >>> "))
+        znachenie2 = int(input("Введите второе значение >>> "))
+        rezultat = znachenie1 / znachenie2
+    except ValueError:
+        return 'Value error'
+    except ZeroDivisionError:
+        return "Вы не можете делить на ноль"
+    return rezultat
+
+print(f"Результат =  {div()}")
+
+№2
+def main(имя: str = None,
+         фамилия: str = None,
+         год: int = None,
+         город: str = None,
+         телефон: str = None,
+         почта: str = None):
+    return f"{имя}, {фамилия},({год}), {город}, {телефон}, {почта}"
+
+user_name = input("Имя >>> ")
+user_last_name = input("Фамилия >>> ")
+user_year = int(input("Год >>> "))
+user_city = input("Город >>> ")
+user_phone = input("телефон >>> ")
+user_email = input("почта >>> ")
+
+print(main(имя=user_first_name, фамилия=user_last_name,год=user_year, город=user_city, телефон=user_phone, почта=user_email))
+
+#3
+def my_func(a, b, c):
+    items = [a, b, c]
+    items.remove(min(items))
+    return sum(items)
+
+a, b, c = int(input("a >>> ")), int(input("b >>> ")), int(input("c >>> "))
+print(my_func(a, b, c))
+
+#4
+4.1
+def my_func(x, y):
+    return x ** y
+x, y = float(input("x >>> ")), int(input("y >>> "))
+print(my_func(x, y))
+
+4.2
+def my_func(x, y):
+    powered = x
+    if y > 0:
+        for func in range(1, y):
+            powered *= x
+    else:
+        for func in range(1, y, -1):
+            powered /= x
+    return powered
+
+x, y = float(input("x >>> ")), int(input("y >>> "))
+print(my_func(x, y))
+
+#5
+total = 0
+while True:
+    stroka = input("числа через пробел >>> ").split()
+    spec_simvol = False
+    for number in stroka:
+        if number.isdigit():
+            total += int(number)
+        else:
+            spec_simvol = True
+            break
+    print(f"сумма = {total}")
+    if spec_simvol:
+        break
+        
+#6
+def int_func(word: str):
+    return "".join([word[0].upper(), word[1:]])
+
+text = input("введите несколько латинских слов >>> ").split()
+text = [int_func(x) for x in text]
+print(" ".join(text))
+
