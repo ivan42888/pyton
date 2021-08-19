@@ -1,0 +1,63 @@
+№1
+
+def simple_calc():
+    a = float(input('сколько часов отработал сотрудник >>> '))
+    b = float(input('закработок в час >>> '))
+    c = float(input('премя >>> '))
+    pay = (a * b) + c
+    return pay
+print(f'заработная плата = {simple_calc() }')
+
+№2
+
+number = [300, 2, 12, 44, 1, 1, 4, 10, 7, 1, 78, 123, 55]
+result = [val for idx, val in enumerate(number) if idx > 0 and number[idx - 1] < val]
+print(result)
+
+№3
+
+print([a for a in range(20, 240) if a % 20 == 0 or a % 21 == 0])
+
+№4
+
+number = [2, 2, 2, 7, 23, 1, 44, 44, 3, 2, 10, 7, 4, 11]
+result = [a for a in number if number.count(a) == 1]
+print(result)
+
+№5
+
+from functools import reduce
+def my_func(a, b):
+    return a * b
+print(f'четные {[a for a in range(100, 1000) if a % 2 == 0]}')
+print(f'произведение {reduce(my_func, [a for a in range(100, 1000) if a % 2 == 0])}')
+
+№6
+
+from itertools import count
+for a in count(int(input('начальное число >>> '))):
+    if a > 10:
+        break
+    print(a)
+
+print("__________________")
+
+from itertools import count, cycle
+list = [1, 2, 3]
+repit = 6
+count = 0
+for b in cycle(list):
+    print(b)
+    count += 1
+    if count >= repit:
+        break
+        
+№7
+
+from math import factorial
+def factorial_gen(n):
+    for x in range(n):
+        print(x, end='! = ')
+        yield factorial(x)
+for a in factorial_gen(5):
+    print(a)
