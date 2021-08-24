@@ -18,19 +18,30 @@ print(f"количесво строк >>> {rows_count}, количество с�
 
 #3
 
-with open("dz03.txt", 'r') as my_file:
-    sal = []
-    poor = []
-    my_list = my_file.read().split('\n')
-    for i in my_list:
-        i = i.split()
-        if int(i[1]) < 20000:
-           poor.append(i[0])
-        sal.append(i[1])
-print(f'Оклад меньше 20 {poor}, ср оклад {sum(map(int, sal)) / len(sal)}')
-
-with open("task03.txt") as f:
-    worker_list = [worker_line.split() for worker_line in f.readlines()]
+list = {'иванов': 20000, 'петров': 21000, 'сидоров': 22000, 'васильев': 23000, 'крестьянов': 24000, 'Little': 21000,
+        'ветров': 19000, 'снегов': 18000, 'кедров': 17000, 'дятлов': 16000, 'комаров': 15000}
+try:
+    my_file = open("dz03.txt", 'w')
+    for last_name, salary in list.items():
+        my_file.write(last_name + ':' + str(salary) + "\n")
+except IOError:
+    print("Произошла ошибка")
+finally:
+    my_file.close()
+summa = 0
+count = 0
+persons = []
+with open("dz03.txt", "r") as my_file:
+    for line in my_file:
+        print(line, end="")
+        tokens = line.split(':')
+        if int(tokens[1]) <= 20000:
+            persons.append(tokens[0])
+        summa += int(tokens[1])
+        count += 1
+result = summa / count
+print(f"оклад менее 20 тыс: {persons}")
+print(f"Средний доход: {result}")
 
 #4
 
