@@ -1,0 +1,198 @@
+№1
+
+class Date:
+    date = '01-01-2000'
+    day = 1
+    month = 1
+    year = 2000
+    def __init__(self, date):
+        Date.date = date
+    @classmethod
+    def first(cls):
+        date_list = []
+        date_split = cls.date.split('-')
+        print(date_split)
+        for i in date_split:
+            date_list.append(int(i))
+        Date.day, Date.month, Date.year = date_list[0], date_list[1], date_list[2]
+        return f'число - {Date.day:02}\nмесяц - {Date.month:02}\nгод - {Date.year}\n'
+    @staticmethod
+    def second():
+        error = 0
+        if Date.day < 1 or Date.day > 31:
+            print('ошибка: день.')
+            error += 1
+        if Date.month < 1 or Date.month > 12:
+            print('ошибка: месяц.')
+            error += 1
+        if Date.year < 1 or Date.year > 2021:
+            print('ошибка: год.')
+            error += 1
+        if error == 0:
+            return f"введеная дата >>> : {Date.day}-{Date.month}-{Date.year}"
+        else:
+            return "ошибка повторите ввод"
+my_date = Date('1-9-2021')
+print(Date.first())
+print(my_date.first())
+print(Date.second())
+
+
+№2
+
+class NullDivision:
+    def __init__(self, divider, denominator):
+        self.divider = divider
+        self.denominator = denominator
+
+    @staticmethod
+    def div_null(divider, denominator):
+        try:
+            return (divider / denominator)
+        except:
+            return (f"на ноль не делим")
+
+
+div = NullDivision(10, 100)
+print(NullDivision.div_null(1, 0))
+print(NullDivision.div_null(2, 0.2))
+print(div.div_null(2, 0))
+
+№3
+
+class NumList(Exception):
+    def __init__(self, *args):
+        self.my_list = []
+    def apperlist(self):
+        while True:
+            el = input('введите число списка >>>: ')
+            if el.upper() == 'stop':
+                print(f'Ввод завершен, результат: {self.my_list}')
+                break
+            try:
+                el = float(el)
+                self.my_list.append(el)
+                print(f'список: {self.my_list}\n')
+            except:
+                print(f'Ввведенео не численное значение!\nТекущий список: {self.my_list}\n')
+
+example = NumList([])
+example.apperlist()
+
+#4 - 6
+
+class OfficeEquipmentWarehouse:
+    """описание склада оргтехники"""
+    print("\nСклад оргтехники")
+
+
+class OfficeEquipment:
+    """Базовый класс"""
+    def __init__(self, producer, color):
+        self.producer = producer
+        self.color = color
+
+
+class Printer(OfficeEquipment):
+    """принтер"""
+    amount_pr = 0
+
+    def __init__(self, producer, color, pr_type):
+        super().__init__(producer, color)
+        self.pr_type = pr_type
+        Printer.amount_pr += 1
+
+    @staticmethod
+    def name():
+        return "<<Принтер>>"
+
+    def type_printer(self):
+        return self.pr_type
+
+    def __str__(self):
+        return "\tпроизводитель: {} \tцвет: {}  \tтип принтера: {}".format(self.producer, self.color, self.pr_type)
+
+
+class Scanner(OfficeEquipment):
+    """сканер"""
+    amount_sc = 0
+
+    def __init__(self, producer, color, sc_sensor):
+        super().__init__(producer, color)
+        self.sc_sensor = sc_sensor
+        Scanner.amount_sc += 1
+
+    @staticmethod
+    def name():
+        return"<<Сканер>>"
+
+    def type_sensor(self):
+        return self.sc_sensor
+
+    def __str__(self):
+        return "\tпроизводитель: {} \tцвет: {} \tтип сенсора: {}".format(self.producer, self.color, self.sc_sensor)
+
+
+class Xerox(OfficeEquipment):
+    """ксерокс"""
+    amount_x = 0
+
+    def __init__(self, producer, color, xer_wi_fi):
+        super().__init__(producer, color)
+        self.xer_wi_fi = xer_wi_fi
+        Xerox.amount_x += 1
+
+    @staticmethod
+    def name():
+        return "<<Ксерокс>>"
+
+    def wi_fi_module(self):
+        return self.xer_wi_fi
+
+    def __str__(self):
+        return "\tпроизводитель: {} \tцвет: {}   \tWi-Fi модуль: {}".format(self.producer, self.color, self.xer_wi_fi)
+
+
+p = Printer('Sumsung', 'black', 'lazer')
+p2 = Printer('Motorola', 'black', 'lazer')
+print(p.name(), p.amount_pr, "шт")
+print(p.__str__())
+print(p2.__str__())
+
+s = Scanner('Huawei', 'pink', 'CMOS')
+s2 = Scanner('Panasonik', 'white', 'CIS')
+print(s.name(), s.amount_sc, "шт")
+print(s.__str__())
+print(s2.__str__())
+
+x = Xerox('Apple', 'white', 'есть')
+x2 = Xerox('Honor', 'white', 'есть')
+print(x.name(), x.amount_x, "шт")
+print(x.__str__())
+print(x2.__str__())
+
+№7
+
+class ComplexNumber:
+    def __init__(self, a, b, *args):
+        self.a = a
+        self.b = b
+        self.z = 'a + b * i'
+
+    def __add__(self, other):
+        print(f'Сумма z1 и z2 равна')
+        return f'z = {self.a + other.a} + {self.b + other.b} * i'
+
+    def __mul__(self, other):
+        print(f'Произведение z1 и z2 равно')
+        return f'z = {self.a * other.a - (self.b * other.b)} + {self.b * other.a} * i'
+
+    def __str__(self):
+        return f'z = {self.a} + {self.b} * i'
+
+
+z_1 = ComplexNumber(1, -2)
+z_2 = ComplexNumber(3, 4)
+print(z_1)
+print(z_1 + z_2)
+print(z_1 * z_2)
