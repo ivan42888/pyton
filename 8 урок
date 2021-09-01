@@ -1,83 +1,78 @@
 №1
 
-class Date:
-    date = '01-01-2000'
-    day = 1
-    month = 1
-    year = 2000
-    def __init__(self, date):
-        Date.date = date
-    @classmethod
-    def first(cls):
-        date_list = []
-        date_split = cls.date.split('-')
-        print(date_split)
-        for i in date_split:
-            date_list.append(int(i))
-        Date.day, Date.month, Date.year = date_list[0], date_list[1], date_list[2]
-        return f'число - {Date.day:02}\nмесяц - {Date.month:02}\nгод - {Date.year}\n'
-    @staticmethod
-    def second():
-        error = 0
-        if Date.day < 1 or Date.day > 31:
-            print('ошибка: день.')
-            error += 1
-        if Date.month < 1 or Date.month > 12:
-            print('ошибка: месяц.')
-            error += 1
-        if Date.year < 1 or Date.year > 2021:
-            print('ошибка: год.')
-            error += 1
-        if error == 0:
-            return f"введеная дата >>> : {Date.day}-{Date.month}-{Date.year}"
-        else:
-            return "ошибка повторите ввод"
-my_date = Date('1-9-2021')
-print(Date.first())
-print(my_date.first())
-print(Date.second())
+class Date(object):
 
+    def __init__(self, day=0, month=0, year=0):
+        self.day = day
+        self.month = month
+        self.year = year
+
+    @classmethod
+    def from_string(cls, date_as_string):
+        day, month, year = map(int, date_as_string.split('-'))
+        date1 = cls(day, month, year)
+        print(cls, date_as_string)
+        return date1
+
+    @staticmethod
+    def is_date_valid(date_as_string):
+        day, month, year = map(int, date_as_string.split('-'))
+        if day <= 31 and day != 0 and month <= 12 and month != 0 and year <= 3999:
+            print(date_as_string)
+            return day, month, year
+        else:
+            print('Ошибка ввода данных')
+
+
+d = '1-9-2021'
+date2 = Date.from_string(d)
+is_date = Date.is_date_valid(d)
 
 №2
 
-class NullDivision:
-    def __init__(self, divider, denominator):
-        self.divider = divider
-        self.denominator = denominator
+class MyException(Exception):
 
-    @staticmethod
-    def div_null(divider, denominator):
+    def division_func(self, a, b):
         try:
-            return (divider / denominator)
-        except:
-            return (f"на ноль не делим")
+            res = round(a / b, 2)
+        except ZeroDivisionError:
+            print(f"{a} / {b} -> на ноль делить нельзя!\n")
+        else:
+            print(f"{a} / {b} = {res} \n")
 
 
-div = NullDivision(10, 100)
-print(NullDivision.div_null(1, 0))
-print(NullDivision.div_null(2, 0.2))
-print(div.div_null(2, 0))
+m_e = MyException()
+
+m_e.division_func(1, 1)
+m_e.division_func(1, 0)
+m_e.division_func(-1, 0)
+m_e.division_func(0, 4)
 
 №3
 
-class NumList(Exception):
-    def __init__(self, *args):
-        self.my_list = []
-    def apperlist(self):
-        while True:
-            el = input('введите число списка >>>: ')
-            if el.upper() == 'stop':
-                print(f'Ввод завершен, результат: {self.my_list}')
-                break
-            try:
-                el = float(el)
-                self.my_list.append(el)
-                print(f'список: {self.my_list}\n')
-            except:
-                print(f'Ввведенео не численное значение!\nТекущий список: {self.my_list}\n')
+class NonNumberListValueException(Exception):
+    pass
 
-example = NumList([])
-example.apperlist()
+
+def append_number(number_list: list):
+    value = input("Введите число >>> ")
+
+    try:
+        number_list.append(float(value))
+    except ValueError:
+        raise NonNumberListValueException(f"Вы ввели '{value}' вместо числа")
+
+
+numbers = []
+
+while True:
+    try:
+        append_number(numbers)
+    except NonNumberListValueException as exception:
+        print(exception)
+    except KeyboardInterrupt:
+        print(f"\nСписок чисел = {numbers}")
+        break
 
 #4 - 6
 
